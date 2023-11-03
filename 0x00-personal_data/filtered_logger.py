@@ -19,15 +19,6 @@ def filter_datum(fields: List[str], redaction: str,
     """
     Replaces sensitive information in a message with a redacted value
     based on the list of fields to redact
-
-    Args:
-        fields: list of fields to redact
-        redaction: the value to use for redaction
-        message: the string message to filter
-        separator: the separator to use between fields
-
-    Returns:
-        The filtered string message with redacted values
     """
     for f in fields:
         message = re.sub(f'{f}=.*?{separator}',
@@ -38,10 +29,6 @@ def filter_datum(fields: List[str], redaction: str,
 def get_logger() -> logging.Logger:
     """
     Returns a Logger object for handling Personal Data
-
-    Returns:
-        A Logger object with INFO log level and RedactingFormatter
-        formatter for filtering PII fields
     """
     logger = logging.getLogger("user_data")
     logger.setLevel(logging.INFO)
@@ -57,10 +44,6 @@ def get_logger() -> logging.Logger:
 def get_db() -> mysql.connector.connection.MySQLConnection:
     """
     Returns a MySQLConnection object for accessing Personal Data database
-
-    Returns:
-        A MySQLConnection object using connection details from
-        environment variables
     """
     username = environ.get("PERSONAL_DATA_DB_USERNAME", "root")
     password = environ.get("PERSONAL_DATA_DB_PASSWORD", "")
@@ -115,8 +98,6 @@ class RedactingFormatter(logging.Formatter):
     def format(self, record: logging.LogRecord) -> str:
         """
         Formats the specified log record as text.
-
-        Filters values in incoming log records using filter_datum.
         """
         record.msg = filter_datum(self.fields, self.REDACTION,
                                   record.getMessage(), self.SEPARATOR)
