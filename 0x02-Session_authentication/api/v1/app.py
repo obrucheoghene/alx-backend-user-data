@@ -30,7 +30,7 @@ elif AUTH_TYPE == 'session_auth':
 
 @app.before_request
 def before_request():
-    """before_request
+    """_summary_
 
     Returns:
         _type_: _description_
@@ -60,7 +60,7 @@ def not_found(error) -> str:
 
 @app.errorhandler(401)
 def unauthorized(error) -> str:
-    """unauthorized
+    """_summary_
 
     Args:
         error (_type_): _description_

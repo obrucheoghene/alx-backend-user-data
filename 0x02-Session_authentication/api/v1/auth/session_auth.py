@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Session authentication Module
+Module for authentication using Session auth
 """
 
 
@@ -11,12 +11,12 @@ from uuid import uuid4
 
 
 class SessionAuth(Auth):
-    """SessionAuth
+    """_summary_
     """
     user_id_by_session_id = {}
 
     def create_session(self, user_id: str = None) -> str:
-        """create_session
+        """_summary_
 
         Args:
             user_id (str, optional): _description_. Defaults to None.
@@ -32,7 +32,7 @@ class SessionAuth(Auth):
         return str(id)
 
     def user_id_for_session_id(self, session_id: str = None) -> str:
-        """user_id_for_session_id
+        """_summary_
 
         Args:
             session_id (str, optional): _description_. Defaults to None.
@@ -45,7 +45,7 @@ class SessionAuth(Auth):
         return self.user_id_by_session_id.get(session_id)
 
     def current_user(self, request=None):
-        """current_user
+        """_summary_
 
         Args:
             request (_type_, optional): _description_. Defaults to None.
@@ -56,7 +56,7 @@ class SessionAuth(Auth):
         return user
 
     def destroy_session(self, request=None):
-        """destroy_session
+        """_summary_
 
         Args:
             request (_type_, optional): _description_. Defaults to None.
